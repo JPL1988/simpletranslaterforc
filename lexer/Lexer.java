@@ -15,6 +15,10 @@ public class Lexer {
     public char peek = ' ';
     //行数
     public static int line = 0;
+
+    /**
+     * 初始化可识别的关键字
+     */
     public Lexer(){
         reserve(new Word("if",   Tag.IF)    );
         reserve(new Word("else", Tag.ELSE)  );
@@ -27,6 +31,7 @@ public class Lexer {
         reserve(Type.Int);
         reserve(Type.Bool);
         reserve(Type.Float);
+        reserve(Type.Short);
     }
 
     /**
@@ -38,7 +43,7 @@ public class Lexer {
     }
 
     /**
-     *
+     *judge the c is equals to peek
      * @param c 期待读入的下一个字符
      * @return 下一个字符与c是否相等
      * @throws IOException

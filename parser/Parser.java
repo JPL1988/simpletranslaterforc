@@ -28,7 +28,11 @@ public class Parser  {
         lexer = l;
         move();
     }
-    //移入下一个向前看符号
+
+    /**
+     * read next look char
+     * @throws IOException
+     */
     public void move()throws IOException{
         look  = lexer.scan();
     }

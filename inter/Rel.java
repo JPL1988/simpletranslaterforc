@@ -16,6 +16,9 @@ public class Rel extends Logical {
             return null;
         else if(p1 == p2)
             return Type.Bool;
+        else if(Type.numeric(p1)&&Type.numeric(p2)){
+            return Type.Bool;
+        }
         else
             return null;
     }
