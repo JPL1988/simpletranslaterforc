@@ -205,6 +205,7 @@ public class Parser  {
     }
 
     /**
+     * loc = bool;
      *  赋值语句
      * @return
      * @throws IOException
@@ -231,6 +232,11 @@ public class Parser  {
         return stmt;
     }
 
+    /**
+     * bool -> bool ||join |join
+     * @return
+     * @throws IOException
+     */
     private Expr bool()throws IOException{
         Expr x = join();
         while (look.tag == Tag.OR){
@@ -240,6 +246,12 @@ public class Parser  {
         }
         return x;
     }
+
+    /**
+     * join -> join &&equality | equality
+     * @return
+     * @throws IOException
+     */
     private Expr join() throws IOException{
         Expr x = equality();
         while (look.tag==Tag.AND){
@@ -249,6 +261,12 @@ public class Parser  {
         }
         return x;
     }
+
+    /**
+     * equality -> equality == rel |equality !=rel|rel
+     * @return
+     * @throws IOException
+     */
     private Expr equality() throws IOException{
         Expr x = rel();
         while (look.tag == Tag.EQ||look.tag == Tag.NE){
@@ -258,6 +276,14 @@ public class Parser  {
         }
         return x;
     }
+
+    /**
+     * rel -> expr < expr | expr <= expr | expr>=expr
+     * |expr>expr |expr
+     *
+     * @return
+     * @throws IOException
+     */
     private Expr rel() throws IOException{
         Expr x = expr();
         switch (look.tag){
@@ -272,6 +298,12 @@ public class Parser  {
                 return x;
         }
     }
+
+    /**
+     * expr -> expr +expr|expr - term |term
+     * @return
+     * @throws IOException
+     */
     private Expr expr()throws IOException{
         Expr x = term();
         while (look.tag=='+'||look.tag=='-'){
@@ -281,6 +313,12 @@ public class Parser  {
         }
         return x;
     }
+
+    /**
+     *  term -> term * unary |term / unary |unary
+     * @return
+     * @throws IOException
+     */
     private Expr term() throws IOException{
         Expr x = unary();
         while (look.tag=='*'||look.tag=='/'){
@@ -290,6 +328,12 @@ public class Parser  {
         }
         return x;
     }
+
+    /**
+     * unary -> !unary | -unary |factory
+     * @return
+     * @throws IOException
+     */
     private Expr unary() throws IOException{
         if(look.tag=='-'){
             move();
@@ -303,6 +347,12 @@ public class Parser  {
         else
             return factory();
     }
+
+    /**
+     * factory -> (bool) |loc|num|real|true|false
+     * @return
+     * @throws IOException
+     */
     private Expr factory()throws IOException{
         Expr x = null;
         switch (look.tag){
