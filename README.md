@@ -1,0 +1,1 @@
+simple translater for c
