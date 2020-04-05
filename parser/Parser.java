@@ -5,8 +5,10 @@ import Project.inter.*;
 import Project.lexer.*;
 import Project.lexer.TokenImpl.*;
 import java.io.IOException;
-import java.util.Map;
 
+/**
+ * 编译器
+ */
 public class Parser  {
     //词法分析的分析器
     private Lexer lexer;
@@ -16,7 +18,12 @@ public class Parser  {
     Env top = null;
     //用于变量声明的存储位置
     int used = 0;
-    //用于组合词法分析器，并开始分析
+
+    /**
+     * 构建Parser
+     * @param l 词法分析器
+     * @throws IOException
+     */
     public Parser(Lexer l )throws IOException{
         lexer = l;
         move();
@@ -25,6 +32,11 @@ public class Parser  {
     public void move()throws IOException{
         look  = lexer.scan();
     }
+
+    /**
+     * 异常处理
+     * @param s 异常信息
+     */
     private void error(String s){
         throw new Error("near line "+lexer.line+": "+s);
     }
@@ -42,8 +54,13 @@ public class Parser  {
             error("syntax error");
         }
     }
+
+    /**
+     * program -> block
+     * @throws IOException
+     */
     public void program() throws IOException{
-        //语法分析，
+        //语法分析
         Stmt s = block();
         //用于生成中间代码
         int begin = s.newLabel();
@@ -72,7 +89,7 @@ public class Parser  {
     }
 
     /**
-     *  D -> type ID
+     *  D -> type ID ;
      * @throws IOException
      */
     private void decls()throws IOException{
@@ -89,8 +106,9 @@ public class Parser  {
     }
 
     /**
-     * 进行类型匹配，
-     * @return
+     * type -> type [num] | basic
+     * 识别定义变量类型的关键字
+     * @return type[num] | basic
      * @throws IOException
      */
     private Type type() throws IOException{
@@ -101,6 +119,13 @@ public class Parser  {
         else
             return dims(p);//返回数组类型
     }
+
+    /**
+     * type -> type [num]    识别数组
+     * @param p 定义变量类型 的关键字
+     * @return 数组
+     * @throws IOException
+     */
     private Type dims(Type p) throws IOException{
         match('[');
         Token tok = look;
@@ -110,6 +135,12 @@ public class Parser  {
             p=dims(p);
         return new Array(((Num)tok).value,p);
     }
+
+    /**
+     * stmts -> stmts stmt|ε
+     * @return stmt
+     * @throws IOException
+     */
     private Stmt stmts() throws  IOException{
         if(look.tag =='}')
             return Stmt.Null;
