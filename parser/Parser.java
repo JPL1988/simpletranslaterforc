@@ -48,6 +48,7 @@ public class Parser  {
         //用于生成中间代码
         int begin = s.newLabel();
         int after = s.newLabel();
+
         System.out.println();
         s.emitLabel(begin);
         s.gen(begin,after);
