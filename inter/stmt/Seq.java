@@ -1,5 +1,7 @@
 package Project.inter.stmt;
 
+import Project.inter.Stmt;
+
 public class Seq extends Stmt {
     Stmt stmt1;
     Stmt stmt2;

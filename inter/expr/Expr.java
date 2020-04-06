@@ -9,7 +9,7 @@ public class Expr extends Node {
     public Token op;
     //运算符类型
     public Type type;
-    Expr(Token t,Type p){
+    public Expr(Token t,Type p){
         op=t;
         type=p;
     }

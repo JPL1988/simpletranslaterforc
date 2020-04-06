@@ -1,6 +1,4 @@
-package Project.inter.stmt;
-
-import Project.inter.Node;
+package Project.inter;
 
 /**
  * 保存下一条语句位置，用于跳转语句

@@ -1,6 +1,7 @@
 package Project.inter.stmt;
 
 import Project.Symbols.Type;
+import Project.inter.Stmt;
 import Project.inter.expr.Id;
 import Project.inter.expr.Expr;
 
