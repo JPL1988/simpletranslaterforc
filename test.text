@@ -7,8 +7,10 @@ int main{
 	float x;
 	float[100] a;
 	while(true){
+		int m;
 		do i=i+1;
 		while (a[i]<v);
+		int l;
 		do j =j-1;
 		while(a[j]>v);
 		if(i>=j)

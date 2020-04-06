@@ -4,7 +4,6 @@ import Project.Symbols.*;
 import Project.inter.*;
 import Project.lexer.*;
 import Project.lexer.TokenImpl.*;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.io.IOException;
 
@@ -283,6 +282,9 @@ public class Parser  {
                 return new Break();
             case '{':
                 return block();
+            case Tag.BASIC:
+                decls();
+                return stmt();
             default:
                 return assign();
         }
