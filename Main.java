@@ -12,7 +12,7 @@ public class Main {
         String fileName = "test.text";
         Lexer lexer = new Lexer(fileName);
         Parser parser = new Parser(lexer);
-        parser.program();
+        parser.file();
         System.out.write('\n');
     }
 }

@@ -4,6 +4,8 @@ import Project.Symbols.*;
 import Project.inter.*;
 import Project.lexer.*;
 import Project.lexer.TokenImpl.*;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
 import java.io.IOException;
 
 /**
@@ -60,6 +62,85 @@ public class Parser  {
     }
 
     /**
+     * file -> headfile functions
+     */
+    public void file() throws IOException{
+        headFile();
+        functions();
+    }
+
+    /**
+     * headfile -> #include <ID.h>
+     * @throws IOException
+     */
+    public void headFile() throws IOException {
+        while(look.tag=='#'){
+            StringBuffer stb = new StringBuffer();
+            match('#');
+            stb.append("#");
+
+            if(look.tag!=Tag.INCLUDE){
+                error("head file error");
+            }
+            stb.append(look.toString());
+            match(Tag.INCLUDE);
+
+            if(look.tag!='<'){
+                error("head file error");
+            }
+            stb.append('<');
+
+            match('<');
+            stb.append(look.toString());
+            if(look.tag!=Tag.HEAD){
+                error("head file error");
+            }
+            match(Tag.HEAD);
+            if(look.tag!='.'){
+                error("head file error");
+            }
+            match('.');
+            stb.append('.');
+            if(!look.toString().equals("h")){
+                error("head file error");
+            }
+            stb.append("h");
+            match(Tag.ID);
+            lexer.words.remove("h");
+            if(look.tag!='>'){
+                error("head file error");
+            }
+            match('>');
+            stb.append(">");
+            System.out.println(stb.toString());
+        }
+    }
+
+    /**
+     * functions -> function functions|function
+     * function -> Basic Id program
+     * @throws IOException
+     */
+    public void functions() throws IOException{
+        while (look.tag==Tag.BASIC){
+            StringBuffer stb = new StringBuffer();
+            if (Tag.BASIC!=look.tag){
+                error("return value error");
+            }
+            stb.append(look.toString()+" ");
+            match(Tag.BASIC);
+            if (Tag.ID!=look.tag){
+                error("function name error");
+            }
+            stb.append(look.toString()+" {");
+            match(Tag.ID);
+            System.out.println(stb.toString());
+            program();
+            System.out.println();
+            System.out.println("}");
+        }
+    }
+    /**
      * program -> block
      * @throws IOException
      */
@@ -69,7 +150,6 @@ public class Parser  {
         //用于生成中间代码
         int begin = s.newLabel();
         int after = s.newLabel();
-        System.out.println();
         s.emitLabel(begin);
         s.gen(begin,after);
         s.emitLabel(after);

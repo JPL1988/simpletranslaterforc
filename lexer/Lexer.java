@@ -26,11 +26,23 @@ public class Lexer {
      */
     public Lexer(String fileName) throws IOException{
         inputStream = new FileInputStream("src/Project/"+fileName);
+        addAllKeyWord();
+    }
+
+    /**
+     * 把所有关键字加入words中
+     */
+    private void addAllKeyWord(){
         reserve(new Word("if",   Tag.IF)    );
         reserve(new Word("else", Tag.ELSE)  );
         reserve(new Word("while",Tag.WHILE) );
         reserve(new Word("do",   Tag.DO)    );
         reserve(new Word("break",Tag.BREAK) );
+        addBasicNum();
+        addHead();
+    }
+
+    private void addBasicNum(){
         reserve(Word.True);
         reserve(Word.False);
         reserve(Type.Char );
@@ -39,7 +51,15 @@ public class Lexer {
         reserve(Type.Float);
         reserve(Type.Short);
     }
-
+    /**
+     * 加入头文件的关键字
+     * 要识别新的头文件，只需要在Word中定义常量并把Tag设置为Tag.HEAD,然后在加入到words中。
+     */
+    private void addHead(){
+        reserve(Word.include);
+        reserve(Word.stdio);
+        reserve(Word.stdlib);
+    }
     /**
      * read a word from input stream
      * @throws IOException
