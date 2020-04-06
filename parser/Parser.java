@@ -422,18 +422,4 @@ public class Parser  {
         }
         return new Access(a,loc,type);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

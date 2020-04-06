@@ -5,10 +5,15 @@ import Project.lexer.TokenImpl.Real;
 import Project.Symbols.Type;
 import Project.lexer.TokenImpl.Word;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 public class Lexer {
+    //把输入文件转换为流
+    public InputStream inputStream;
     //把字符串映射为字word，存储关键字和被定义的变量
     public Map<String, Token> words = new HashMap<>();
     //记录下一个char或空白。
@@ -19,7 +24,8 @@ public class Lexer {
     /**
      * 初始化可识别的关键字
      */
-    public Lexer(){
+    public Lexer(String fileName) throws IOException{
+        inputStream = new FileInputStream("src/Project/"+fileName);
         reserve(new Word("if",   Tag.IF)    );
         reserve(new Word("else", Tag.ELSE)  );
         reserve(new Word("while",Tag.WHILE) );
@@ -39,7 +45,10 @@ public class Lexer {
      * @throws IOException
      */
      void readch() throws IOException{
-        peek = (char) System.in.read();
+        peek = (char) inputStream.read();
+        if ((int) peek== -1){
+            System.exit(0);
+        }
     }
 
     /**
@@ -188,7 +197,7 @@ public class Lexer {
     public void clearTab() throws IOException{
         //剔除空白，制表符，换行符
         for (;;readch()){
-            if(peek==' '||peek=='\t')
+            if(peek==' '||peek=='\t'||peek=='\r')
                 continue;
             else if(peek=='\n')
                 line++;
