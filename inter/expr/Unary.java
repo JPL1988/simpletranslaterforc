@@ -1,4 +1,4 @@
-package Project.inter;
+package Project.inter.expr;
 
 import Project.Symbols.Type;
 import Project.lexer.Token;

@@ -1,9 +1,9 @@
-package Project.inter;
+package Project.inter.expr;
 
 import Project.lexer.Token;
 
 public class Or extends Logical {
-    public Or(Token t,Expr x1,Expr x2){
+    public Or(Token t, Expr x1, Expr x2){
         super(t,x1,x2);
     }
 

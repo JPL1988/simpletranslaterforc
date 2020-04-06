@@ -1,4 +1,4 @@
-package Project.inter;
+package Project.inter.stmt;
 
 public class Seq extends Stmt {
     Stmt stmt1;
@@ -9,6 +9,11 @@ public class Seq extends Stmt {
         this.stmt2 = stmt2;
     }
 
+    /**
+     * 重写父类方法，用于为stmt1,stmt2生成三地址代码
+     * @param b 语句开始处的标号
+     * @param a 语句的下一条指令的标号（标记这个语句代码之后的第一条指令）
+     */
     @Override
     public void gen(int b, int a) {
         if(stmt1 == Stmt.Null)

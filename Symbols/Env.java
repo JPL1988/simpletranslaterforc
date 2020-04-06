@@ -1,6 +1,6 @@
 package Project.Symbols;
 
-import Project.inter.Id;
+import Project.inter.expr.Id;
 
 import java.util.HashMap;
 import java.util.Map;

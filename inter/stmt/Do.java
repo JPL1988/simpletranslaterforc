@@ -1,8 +1,9 @@
-package Project.inter;
+package Project.inter.stmt;
 
 import Project.Symbols.Type;
+import Project.inter.expr.Expr;
 
-public class Do extends Stmt{
+public class Do extends Stmt {
     //while中的bool判断
     Expr expr;
     //do里面的语句

@@ -1,6 +1,8 @@
-package Project.inter;
+package Project.inter.expr;
 
 import Project.Symbols.Type;
+import Project.inter.expr.Expr;
+import Project.inter.stmt.Temp;
 import Project.lexer.Token;
 
 /**

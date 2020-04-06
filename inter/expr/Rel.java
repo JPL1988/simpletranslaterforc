@@ -1,4 +1,4 @@
-package Project.inter;
+package Project.inter.expr;
 
 import Project.Symbols.Array;
 import Project.Symbols.Type;
@@ -8,7 +8,7 @@ import Project.lexer.Token;
  * 实现了运算符<,<=,==,!=,</=,==,!=,>=,>
  */
 public class Rel extends Logical {
-    public Rel(Token t,Expr x1,Expr x2){
+    public Rel(Token t, Expr x1, Expr x2){
         super(t, x1, x2);
     }
     public Type check(Type p1,Type p2){

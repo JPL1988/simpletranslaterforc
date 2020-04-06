@@ -1,9 +1,11 @@
-package Project.inter;
+package Project.inter.expr;
 
 import Project.Symbols.Type;
+import Project.inter.expr.Expr;
+import Project.inter.stmt.Temp;
 import Project.lexer.Token;
 
-public class Op extends Expr{
+public class Op extends Expr {
 
     public Op(Token t, Type p){
         super(t,p);

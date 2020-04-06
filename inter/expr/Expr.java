@@ -1,9 +1,10 @@
-package Project.inter;
+package Project.inter.expr;
 
 import Project.Symbols.Type;
+import Project.inter.Node;
 import Project.lexer.Token;
 
-public class Expr extends Node{
+public class Expr extends Node {
     //结点的运算符
     public Token op;
     //运算符类型

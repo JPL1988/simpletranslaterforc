@@ -4,6 +4,8 @@ import Project.lexer.Lexer;
 
 /**
  * 抽象语法树的结点被实现为Node的对象。
+ * 记录节点行号用于报告错误
+ * 记录标签用于三地址代码生成
  */
 public class Node {
     //记录本节点在原程序中的行号，便于报告错误

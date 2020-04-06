@@ -1,5 +1,10 @@
-package Project.inter;
+package Project.inter.stmt;
 
+import Project.inter.Node;
+
+/**
+ * 保存下一条语句位置，用于跳转语句
+ */
 public class Stmt extends Node {
     public Stmt(){}
     public static Stmt Null = new Stmt();

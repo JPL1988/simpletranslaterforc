@@ -1,6 +1,6 @@
-package Project.inter;
+package Project.inter.stmt;
 
-public class Break extends  Stmt{
+public class Break extends Stmt {
     Stmt stmt;
     public Break(){
         if(Stmt.Enclosing == Stmt.Null)

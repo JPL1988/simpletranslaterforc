@@ -1,12 +1,12 @@
-package Project.inter;
+package Project.inter.expr;
 
 import Project.lexer.Token;
 
 /**
  * and的代码和or类似
  */
-public class And extends Logical{
-    public And(Token t,Expr x1,Expr x2){
+public class And extends Logical {
+    public And(Token t, Expr x1, Expr x2){
         super(t, x1, x2);
     }
 

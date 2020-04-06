@@ -1,6 +1,8 @@
-package Project.inter;
+package Project.inter.stmt;
 
 import Project.Symbols.Type;
+import Project.inter.expr.Id;
+import Project.inter.expr.Expr;
 
 public class Set extends Stmt {
     public Id id;

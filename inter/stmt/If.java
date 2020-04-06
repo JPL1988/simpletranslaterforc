@@ -1,6 +1,7 @@
-package Project.inter;
+package Project.inter.stmt;
 
 import Project.Symbols.Type;
+import Project.inter.expr.Expr;
 
 public class If extends Stmt {
     //if语句的判断，bool

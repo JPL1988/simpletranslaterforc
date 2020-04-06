@@ -1,7 +1,8 @@
 package Project.parser;
 
 import Project.Symbols.*;
-import Project.inter.*;
+import Project.inter.expr.*;
+import Project.inter.stmt.*;
 import Project.lexer.*;
 import Project.lexer.TokenImpl.*;
 
@@ -228,7 +229,7 @@ public class Parser  {
         if(look.tag =='}')
             return Stmt.Null;
         else
-            return new Seq(stmt(),stmts());
+            return new Seq(stmt(),stmts());//前一颗子树为stmt,后一个字数是否为空需要判断，故调用stmts.
     }
     private Stmt stmt() throws  IOException{
         Expr x;

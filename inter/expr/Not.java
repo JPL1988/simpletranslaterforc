@@ -1,9 +1,9 @@
-package Project.inter;
+package Project.inter.expr;
 
 import Project.lexer.Token;
 
 public class Not extends Logical {
-    public Not(Token t,Expr x2){
+    public Not(Token t, Expr x2){
         super(t,x2,x2);
     }
     public void jumping(int t,int f){
